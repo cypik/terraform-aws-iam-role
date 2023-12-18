@@ -5,7 +5,7 @@ variable "name" {
 }
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://github.com/cypik/terraform-aws-iam-role"
   description = "Terraform current module repo"
 }
 variable "environment" {
@@ -15,7 +15,7 @@ variable "environment" {
 }
 variable "managedby" {
   type        = string
-  default     = ""
+  default     = "cypik"
   description = "ManagedBy, eg 'cypik'"
 }
 variable "label_order" {
