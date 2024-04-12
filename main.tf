@@ -1,15 +1,15 @@
 ##-----------------------------------------------------------------------------
 ## Labels module callled that will be used for naming and tags.
 ##-----------------------------------------------------------------------------
-module "lables" {
-  source      = "git::https://github.com/cypik/terraform-aws-labels.git?ref=v1.0.0"
+module "labels" {
+  source      = "cypik/labels/aws"
+  version     = "1.0.1"
   enabled     = var.enabled
   name        = var.name
   repository  = var.repository
   environment = var.environment
   managedby   = var.managedby
   label_order = var.label_order
-
 }
 
 ##-----------------------------------------------------------------------------
@@ -17,7 +17,7 @@ module "lables" {
 ##----------------------------------------------------------------------------
 resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
-  name                  = module.lables.id
+  name                  = module.labels.id
   assume_role_policy    = var.assume_role_policy
   managed_policy_arns   = var.managed_policy_arns
   force_detach_policies = var.force_detach_policies
@@ -25,7 +25,7 @@ resource "aws_iam_role" "default" {
   description           = var.description
   max_session_duration  = var.max_session_duration
   permissions_boundary  = var.permissions_boundary
-  tags                  = module.lables.tags
+  tags                  = module.labels.tags
 }
 
 #-----------------------------------------------------------------------------
@@ -33,7 +33,7 @@ resource "aws_iam_role" "default" {
 #-----------------------------------------------------------------------------
 resource "aws_iam_role_policy" "default" {
   count  = var.enabled && var.policy_enabled && var.policy_arn == "" ? 1 : 0
-  name   = format("%s-policy", module.lables.id)
+  name   = format("%s-policy", module.labels.id)
   role   = join("", aws_iam_role.default[*].id)
   policy = var.policy
 }
