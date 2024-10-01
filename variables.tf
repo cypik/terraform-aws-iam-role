@@ -3,21 +3,25 @@ variable "name" {
   default     = ""
   description = "Name  (e.g. `app` or `cluster`)."
 }
+
 variable "repository" {
   type        = string
   default     = "https://github.com/cypik/terraform-aws-iam-role"
   description = "Terraform current module repo"
 }
+
 variable "environment" {
   type        = string
   default     = ""
   description = "Environment (e.g. `prod`, `dev`, `staging`)."
 }
+
 variable "managedby" {
   type        = string
-  default     = "cypik"
-  description = "ManagedBy, eg 'cypik'"
+  default     = "info@cypik.com"
+  description = "ManagedBy, eg 'info@cypik.com'"
 }
+
 variable "label_order" {
   type        = list(any)
   default     = ["name", "environment"]
@@ -43,6 +47,7 @@ variable "managed_policy_arns" {
   default     = []
   description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role"
 }
+
 variable "force_detach_policies" {
   type        = bool
   default     = false

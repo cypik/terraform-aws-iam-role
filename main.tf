@@ -3,7 +3,7 @@
 ##-----------------------------------------------------------------------------
 module "labels" {
   source      = "cypik/labels/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   enabled     = var.enabled
   name        = var.name
   repository  = var.repository
