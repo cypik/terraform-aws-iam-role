@@ -19,7 +19,6 @@ resource "aws_iam_role" "default" {
   count                 = var.enabled ? 1 : 0
   name                  = module.labels.id
   assume_role_policy    = var.assume_role_policy
-  managed_policy_arns   = var.managed_policy_arns
   force_detach_policies = var.force_detach_policies
   path                  = var.path
   description           = var.description
@@ -45,4 +44,13 @@ resource "aws_iam_role_policy_attachment" "default" {
   count      = var.enabled && var.policy_enabled && var.policy_arn != "" ? 1 : 0
   role       = join("", aws_iam_role.default[*].id)
   policy_arn = var.policy_arn
+}
+
+##-----------------------------------------------------------------------------
+## Below resource will attach managed policies to the IAM role using aws_iam_role_policy_attachment.
+##-----------------------------------------------------------------------------
+resource "aws_iam_role_policy_attachment" "managed_policies" {
+  count      = var.enabled && var.managed_policy_arns != 0 ? length(var.managed_policy_arns) : 0
+  role       = join("", aws_iam_role.default[*].id)
+  policy_arn = element(var.managed_policy_arns, count.index)
 }
