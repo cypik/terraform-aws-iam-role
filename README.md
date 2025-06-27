@@ -23,7 +23,7 @@ To get started, make sure you have configured your AWS provider. You can use the
 
 module "iam-role" {
   source             = "cypik/iam-role/aws"
-  version            = "1.0.2"
+  version            = "1.0.3"
   name               = "iam"
   environment        = "test"
   assume_role_policy = data.aws_iam_policy_document.default.json
@@ -45,14 +45,14 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.67.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.12.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.82.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >=5.67.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >=5.82.2 |
 
 ## Modules
 
